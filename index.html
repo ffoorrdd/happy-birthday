@@ -1,284 +1,284 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>С Днём Рождения, бабушка Дина!</title>
-  
-  <!-- Подключаем мягкий округлый шрифт Comfortaa из Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>С Днём Рождения, бабушка Дина!</title>
+  
+  <!-- Подключаем мягкий округлый шрифт Comfortaa из Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
 
-  <!-- Подключаем библиотеку для конфетти -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Подключаем библиотеку для конфетти -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      user-select: none;
-    }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
 
-    body {
-      background: #ffffff; /* Белый фон */
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      font-family: 'Comfortaa', cursive, sans-serif; /* Мягкий округлый шрифт */
-      cursor: pointer;
-      position: relative;
-    }
+    body {
+      background: #ffffff; /* Белый фон */
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Comfortaa', cursive, sans-serif; /* Мягкий округлый шрифт */
+      cursor: pointer;
+      position: relative;
+    }
 
-    /* Стиль карточек с фотографиями по углам */
-    .photo-card {
-      position: absolute;
-      top: 20px;
-      z-index: 20;
-      background: #ffffff;
-      padding: 10px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s ease;
-    }
+    /* Стиль карточек с фотографиями */
+    .photo-card {
+      position: absolute;
+      z-index: 20;
+      background: #ffffff;
+      padding: 12px;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
 
-    .photo-card:hover {
-      transform: scale(1.05);
-    }
+    .photo-card:hover {
+      transform: scale(1.05);
+    }
 
-    .photo-card img {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 12px;
-    }
+    /* Увеличенный размер фотографий */
+    .photo-card img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 14px;
+    }
 
-    .photo-card .photo-title {
-      margin-top: 8px;
-      font-size: 0.85rem;
-      color: #555555;
-      font-weight: 700;
-    }
+    .photo-card .photo-title {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #555555;
+      font-weight: 700;
+    }
 
-    /* Расположение по углам */
-    .photo-card.top-left {
-      left: 20px;
-    }
+    /* Левый верхний угол */
+    .photo-card.top-left {
+      top: 20px;
+      left: 20px;
+    }
 
-    .photo-card.top-right {
-      right: 20px;
-    }
+    /* Правый нижний угол */
+    .photo-card.bottom-right {
+      bottom: 20px;
+      right: 20px;
+    }
 
-    /* Радужный текст по буквам */
-    .rainbow-text {
-      font-size: 3.5rem;
-      font-weight: 700;
-      text-align: center;
-      padding: 20px;
-      line-height: 1.4;
-      z-index: 10;
-    }
+    /* Радужный текст по буквам */
+    .rainbow-text {
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 20px;
+      line-height: 1.4;
+      z-index: 10;
+    }
 
-    /* Падающий торт */
-    .falling-cake {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      z-index: 5;
-      pointer-events: none;
-      animation: fall 3s linear forwards;
-    }
+    /* Падающий торт */
+    .falling-cake {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      z-index: 5;
+      pointer-events: none;
+      animation: fall 3s linear forwards;
+    }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(-80px) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(105vh) rotate(360deg);
-        opacity: 0.8;
-      }
-    }
+    @keyframes fall {
+      0% {
+        transform: translateY(-80px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0.8;
+      }
+    }
 
-    /* Поднимающийся шарик с ниточкой */
-    .rising-balloon {
-      position: absolute;
-      width: 50px;
-      height: 65px;
-      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-      z-index: 5;
-      pointer-events: none;
-      animation: rise 4s ease-in forwards;
-    }
+    /* Поднимающийся шарик с ниточкой */
+    .rising-balloon {
+      position: absolute;
+      width: 50px;
+      height: 65px;
+      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+      z-index: 5;
+      pointer-events: none;
+      animation: rise 4s ease-in forwards;
+    }
 
-    /* Узелок и ниточка шарика */
-    .rising-balloon::before {
-      content: "";
-      position: absolute;
-      bottom: -6px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-bottom: 7px solid currentColor;
-    }
+    /* Узелок и ниточка шарика */
+    .rising-balloon::before {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 7px solid currentColor;
+    }
 
-    .rising-balloon::after {
-      content: "";
-      position: absolute;
-      bottom: -26px;
-      left: 50%;
-      width: 2px;
-      height: 20px;
-      background: rgba(0, 0, 0, 0.2);
-      transform: translateX(-50%);
-    }
+    .rising-balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -26px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      transform: translateX(-50%);
+    }
 
-    @keyframes rise {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-110vh) scale(1.1);
-        opacity: 0.9;
-      }
-    }
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.1);
+        opacity: 0.9;
+      }
+    }
 
-    /* Адаптация под мобильные экраны */
-    @media (max-width: 768px) {
-      .photo-card img {
-        width: 80px;
-        height: 80px;
-      }
-      .photo-card .photo-title {
-        font-size: 0.7rem;
-      }
-      .rainbow-text {
-        font-size: 2.2rem;
-      }
-    }
+    /* Адаптация под мобильные экраны */
+    @media (max-width: 768px) {
+      .photo-card img {
+        width: 110px;
+        height: 110px;
+      }
+      .photo-card .photo-title {
+        font-size: 0.75rem;
+      }
+      .rainbow-text {
+        font-size: 2.2rem;
+      }
+    }
 
-    /* Скрытие аудиоэлемента */
-    audio {
-      display: none;
-    }
-  </style>
+    /* Скрытие аудиоэлемента */
+    audio {
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Фотография в левом верхнем углу -->
-  <div class="photo-card top-left">
-    <!-- Укажите точное имя файла и расширение (.jpg, .png и т.д.) -->
-    <img src="Hignyak-1474.jpg" alt="Hignyak-1474">
-    <span class="photo-title">Hignyak-1474</span>
-  </div>
+  <!-- Фотография в левом верхнем углу -->
+  <div class="photo-card top-left">
+    <img src="Hignyak-1474.jpg" alt="Hignyak-1474">
+    <span class="photo-title">Hignyak-1474</span>
+  </div>
 
-  <!-- Фотография в правом верхнем углу -->
-  <div class="photo-card top-right">
-    <!-- Укажите точное имя файла и расширение (.jpg, .png и т.д.) -->
-    <img src="Hignyak-1489.jpg" alt="Hignyak-1489">
-    <span class="photo-title">Hignyak-1489</span>
-  </div>
+  <!-- Фотография в правом нижнем углу -->
+  <div class="photo-card bottom-right">
+    <img src="Hignyak-1489.jpg" alt="Hignyak-1489">
+    <span class="photo-title">Hignyak-1489</span>
+  </div>
 
-  <!-- Заголовок -->
-  <h1 class="rainbow-text" id="greetingText"></h1>
+  <!-- Заголовок -->
+  <h1 class="rainbow-text" id="greetingText"></h1>
 
-  <!-- Фоновая музыка -->
-  <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73224.mp3?filename=happy-birthday-155461.mp3"></audio>
+  <!-- Фоновая музыка -->
+  <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73224.mp3?filename=happy-birthday-155461.mp3"></audio>
 
-  <script>
-    // 1. Раскрашиваем каждую букву текста в цвета радуги
-    const text = "С днём рождения бабушка Дина";
-    const rainbowColors = [
-      "#ff3838", "#ff9f1a", "#ffb142", 
-      "#2ed573", "#1e90ff", "#3742fa", "#9b59b6"
-    ];
+  <script>
+    // 1. Раскрашиваем каждую букву текста в цвета радуги (с пунктуацией)
+    const text = "С днём рождения, бабушка Дина!";
+    const rainbowColors = [
+      "#ff3838", "#ff9f1a", "#ffb142", 
+      "#2ed573", "#1e90ff", "#3742fa", "#9b59b6"
+    ];
 
-    const container = document.getElementById("greetingText");
-    let colorIndex = 0;
+    const container = document.getElementById("greetingText");
+    let colorIndex = 0;
 
-    for (let char of text) {
-      const span = document.createElement("span");
-      span.textContent = char;
-      if (char !== " ") {
-        span.style.color = rainbowColors[colorIndex % rainbowColors.length];
-        colorIndex++;
-      }
-      container.appendChild(span);
-    }
+    for (let char of text) {
+      const span = document.createElement("span");
+      span.textContent = char;
+      if (char !== " ") {
+        span.style.color = rainbowColors[colorIndex % rainbowColors.length];
+        colorIndex++;
+      }
+      container.appendChild(span);
+    }
 
-    // 2. Включение музыки при первом клике
-    const audio = document.getElementById("bgMusic");
-    let musicStarted = false;
+    // 2. Включение музыки при первом клике
+    const audio = document.getElementById("bgMusic");
+    let musicStarted = false;
 
-    function playAudio() {
-      if (!musicStarted) {
-        audio.play().catch(e => console.log("Автовоспроизведение блокировано:", e));
-        musicStarted = true;
-      }
-    }
+    function playAudio() {
+      if (!musicStarted) {
+        audio.play().catch(e => console.log("Автовоспроизведение блокировано:", e));
+        musicStarted = true;
+      }
+    }
 
-    // 3. Палитра из 6 цветов для шариков
-    const balloonColors = [
-      "#ff4757", // Красный
-      "#1e90ff", // Синий
-      "#2ed573", // Зеленый
-      "#ffa502", // Желтый
-      "#9b59b6", // Фиолетовый
-      "#ff6b81" // Розовый
-    ];
+    // 3. Палитра из 6 цветов для шариков
+    const balloonColors = [
+      "#ff4757", // Красный
+      "#1e90ff", // Синий
+      "#2ed573", // Зеленый
+      "#ffa502", // Желтый
+      "#9b59b6", // Фиолетовый
+      "#ff6b81" // Розовый
+    ];
 
-    // SVG иконка торта
-    const cakeSvg = `
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 36C8 33.7909 9.79086 32 12 32H52C54.2091 32 56 33.7909 56 36V54C56 56.2091 54.2091 58 52 58H12C9.79086 58 8 56.2091 8 54V36Z" fill="#F472B6"/>
-        <path d="M12 32C12 32 16 36 22 36C28 36 32 32 32 32C32 32 36 36 42 36C48 36 52 32 52 32V40C52 40 48 44 42 44C36 44 32 40 32 40C32 40 28 44 22 44C16 44 12 40 12 40V32Z" fill="#FDF2E9"/>
-        <path d="M30 18H34V32H30V18Z" fill="#FEF08A"/>
-        <path d="M32 10C32 10 35 14 35 16C35 17.6569 33.6569 19 32 19C30.3431 19 29 17.6569 29 16C29 14 32 10 32 10Z" fill="#EF4444"/>
-      </svg>
-    `;
+    // SVG иконка торта
+    const cakeSvg = `
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 36C8 33.7909 9.79086 32 12 32H52C54.2091 32 56 33.7909 56 36V54C56 56.2091 54.2091 58 52 58H12C9.79086 58 8 56.2091 8 54V36Z" fill="#F472B6"/>
+        <path d="M12 32C12 32 16 36 22 36C28 36 32 32 32 32C32 32 36 36 42 36C48 36 52 32 52 32V40C52 40 48 44 42 44C36 44 32 40 32 40C32 40 28 44 22 44C16 44 12 40 12 40V32Z" fill="#FDF2E9"/>
+        <path d="M30 18H34V32H30V18Z" fill="#FEF08A"/>
+        <path d="M32 10C32 10 35 14 35 16C35 17.6569 33.6569 19 32 19C30.3431 19 29 17.6569 29 16C29 14 32 10 32 10Z" fill="#EF4444"/>
+      </svg>
+    `;
 
-    // 4. Обработка клика по экрану
-    document.body.addEventListener("click", (e) => {
-      // Проверяем, чтобы клик не был по карточке с фото (чтобы клик срабатывал приятно везде)
-      playAudio();
+    // 4. Обработка клика по экрану
+    document.body.addEventListener("click", (e) => {
+      playAudio();
 
-      const action = Math.floor(Math.random() * 3) + 1;
+      const action = Math.floor(Math.random() * 3) + 1;
 
-      if (action === 1) {
-        // Конфетти
-        confetti({
-          particleCount: 80,
-          spread: 70,
-          origin: { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight }
-        });
-      } else if (action === 2) {
-        // Падающий торт
-        const cake = document.createElement("div");
-        cake.className = "falling-cake";
-        cake.innerHTML = cakeSvg;
-        cake.style.left = `${e.clientX - 30}px`;
-        cake.style.top = `${e.clientY - 30}px`;
-        document.body.appendChild(cake);
-        setTimeout(() => cake.remove(), 3000);
-      } else if (action === 3) {
-        // Шарик вверх
-        const balloon = document.createElement("div");
-        balloon.className = "rising-balloon";
-        const randomColor = balloonColors[Math.floor(Math.random() * balloonColors.length)];
-        balloon.style.backgroundColor = randomColor;
-        balloon.style.color = randomColor;
-        balloon.style.left = `${e.clientX - 25}px`;
-        balloon.style.top = `${e.clientY - 30}px`;
-        document.body.appendChild(balloon);
-        setTimeout(() => balloon.remove(), 4000);
-      }
-    });
-  </script>
+      if (action === 1) {
+        // Конфетти
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight }
+        });
+      } else if (action === 2) {
+        // Падающий торт
+        const cake = document.createElement("div");
+        cake.className = "falling-cake";
+        cake.innerHTML = cakeSvg;
+        cake.style.left = `${e.clientX - 30}px`;
+        cake.style.top = `${e.clientY - 30}px`;
+        document.body.appendChild(cake);
+        setTimeout(() => cake.remove(), 3000);
+      } else if (action === 3) {
+        // Шарик вверх
+        const balloon = document.createElement("div");
+        balloon.className = "rising-balloon";
+        const randomColor = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+        balloon.style.backgroundColor = randomColor;
+        balloon.style.color = randomColor;
+        balloon.style.left = `${e.clientX - 25}px`;
+        balloon.style.top = `${e.clientY - 30}px`;
+        document.body.appendChild(balloon);
+        setTimeout(() => balloon.remove(), 4000);
+      }
+    });
+  </script>
 </body>
 </html>
